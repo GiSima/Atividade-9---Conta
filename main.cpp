@@ -65,6 +65,35 @@ public:
 
 };
 
+Cliente cadastroCliente(){
+	Cliente alt;
+	string n;
+	int a,b,c;
+	cout << "Cadastro de cliente" << endl;
+	cout << "Digite o nome : ";
+	cin >> n;
+	alt.setNome(n);
+	cout << "Digite o telefone : ";
+	cin >> a;
+	alt.setTelefone(a);
+	bool i=true;
+	while (i){
+		cout << "Digite o tipo da conta : ";
+		cin >> b;
+		i = alt.setTipo(b);
+		i = !i;
+	}
+	i = true;
+	while (i){
+		cout << "Digite a quantidade de Minutos consumidos: ";
+		cin >> c;
+		i = alt.setMinutos(c);
+		i = !i;
+	}
+
+	return alt;
+}
+
 int main()
 {
 
