@@ -94,6 +94,13 @@ Cliente cadastroCliente(){
 	return alt;
 }
 
+void geraMenu(){
+	cout << "1) Visualizar relatório de clientes" << endl;
+	cout << "2) Visualizar a receita total da empresa" << endl;
+	cout << "3) Quantidade de clientes que consumiram acima de 120 minutos" << endl;
+	cout << "4) Sair" << endl;
+}
+
 int main()
 {
 
