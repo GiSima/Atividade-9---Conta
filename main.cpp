@@ -101,6 +101,20 @@ void geraMenu(){
 	cout << "4) Sair" << endl;
 }
 
+int selecionaOpcao(){
+	int sel = 0;
+	while(true){
+		cout << "Digite a opção desejada (1 a 4): ";
+		cin >> sel;
+		if(sel < 0||sel > 4){
+			return sel;
+		}
+		else{
+		cout << "Opcao invalida" << endl;
+		}
+	}
+}
+
 int main()
 {
 
