@@ -93,6 +93,8 @@ Cliente cadastroCliente(){
 		i = !i;
 	}
 
+	// cout << endl;
+
 	return alt;
 }
 
@@ -109,36 +111,75 @@ int selecionaOpcao(){
 		cout << "Digite a opção desejada (1 a 4): ";
 		cin >> sel;
 		if(sel < 0||sel > 4){
-			return sel;
+			cout << "Opcao invalida" << endl;
 		}
 		else{
-		cout << "Opcao invalida" << endl;
+			return sel;
 		}
 	}
 }
 
-void visualizarRelatorio(Cliente list[]){
+void visualizarRelatorio(Cliente list[], int size){
 	string a, b; int c, d; double e;
-	for(int i=0; i < sizeof(list); i++){
+	for(int i=0; i < size; i++){
 		a = list[i].getNome();
 		b = list[i].getTelefone();
 		c = list[i].getTipo();
 		d = list[i].getMinutos();
 		e = list[i].calcularValorConta();
+		cout << fixed << setprecision(2);
 		cout << a << ", " << b << ", Tipo " << c << ", Minutos: " << d << ", Conta = R$ " << e << endl; 
+	}
+}
+
+void visualizarReceita(Cliente list[], int size){
+	double receita = 0;
+	for (int i=0; i < size; i++){
+		receita += list[i].calcularValorConta();
+	}
+	cout << "A receita total da empresa foi de: R$ " << receita << endl;
+}
+
+void listaClientesConsumo(Cliente list[], int size){
+	string nome;
+	int min;
+	for(int i=0; i < size; i++){
+		if(list[i].calcularValorConta() > 120){
+			nome = list[i].getNome();
+			min = list[i].getMinutos();
+			cout << nome << " utilizou " << min << " Minutos" << endl;
+		}
 	}
 }
 
 int main()
 {
-	Cliente clientes[4];
+	int size = 4;
+	Cliente clientes[size];
 	
-	for(int i=0 ; i < sizeof(clientes); i++){
+	for(int i=0 ; i < size; i++){
 		clientes[i] = cadastroCliente();
-	}	
+	}
 
-	
-	
+	geraMenu();
+	int op;
+
+	while(true){
+		op = selecionaOpcao();
+		if(op == 1){
+			visualizarRelatorio(clientes, size);
+		}
+		if(op == 2){
+			visualizarReceita(clientes, size);
+		}
+		if(op == 3){
+			listaClientesConsumo(clientes, size);
+		}
+		if(op == 4){
+			cout << "Tchau   :)" << endl << endl << "Esse programa foi desenvolvido pelo aluno Giovane Simamoto Lemes" << endl;
+			break;
+		}
+	}	
 
 	return 0;
 }
