@@ -4,7 +4,7 @@ using namespace std;
 
 class Cliente {
 	string nome;
-	int telefone;
+	string telefone;
 	int tipo;
 	int minutos;
 
@@ -13,22 +13,24 @@ public:
 // • Se tipo igual a 0 retornar minutos * 1
 // • Se tipo igual a 1 retornar minutos * 2
 // • Se tipo igual a 2 retornar minutos * 3
-	void calcularValorConta(){
+	
+// CORREÇÃO DO METODO CALCULAR VALOR CONTA	
+	int calcularValorConta(){
 		if (tipo==0){
-			cout << minutos;
+			return minutos * 1;
 		}
-		if (tipo==1){
-			cout << minutos * 2;
+		else if (tipo==1){
+			return minutos * 2;
 		}
-		if (tipo==2){
-			cout << minutos * 3;
+		else{
+			return minutos * 3;
 		}
 	}
 // - métodos set : criar um método set para cada atributo, os atributos tipo e minutos apresentam regras de validação, nestes casos, o método deve retornar 1, se o valor estiver correto ou 0, se estiver incorreto.
 	void setNome(string n){
 		nome = n;
 	}
-	void setTelefone(int n){
+	void setTelefone(string n){
 		telefone = n;
 	}
 	int setTipo(int n){
@@ -50,25 +52,25 @@ public:
 		}
 	}
 // - métodos get : criar um método get para cada atributo.
-	void getNome(){
-		cout << nome << endl;
+	string getNome(){
+		return nome;
 	}
-	void getTelefone(){
-		cout << telefone << endl;
+	string getTelefone(){
+		return telefone;
 	}
-	void getTipo(){
-		cout << tipo << endl;
+	int getTipo(){
+		return tipo;
 	}
-	void getMinutos(){
-		cout << minutos << endl;
+	int getMinutos(){
+		return minutos;
 	}
 
 };
 
 Cliente cadastroCliente(){
 	Cliente alt;
-	string n;
-	int a,b,c;
+	string n, a;
+	int b,c;
 	cout << "Cadastro de cliente" << endl;
 	cout << "Digite o nome : ";
 	cin >> n;
@@ -115,8 +117,28 @@ int selecionaOpcao(){
 	}
 }
 
+void visualizarRelatorio(Cliente list[]){
+	string a, b; int c, d; double e;
+	for(int i=0; i < sizeof(list); i++){
+		a = list[i].getNome();
+		b = list[i].getTelefone();
+		c = list[i].getTipo();
+		d = list[i].getMinutos();
+		e = list[i].calcularValorConta();
+		cout << a << ", " << b << ", Tipo " << c << ", Minutos: " << d << ", Conta = R$ " << e << endl; 
+	}
+}
+
 int main()
 {
+	Cliente clientes[4];
+	
+	for(int i=0 ; i < sizeof(clientes); i++){
+		clientes[i] = cadastroCliente();
+	}	
+
+	
+	
 
 	return 0;
 }
